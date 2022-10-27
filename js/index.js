@@ -52,7 +52,7 @@ switch (host) {
         player_post.innerHTML = okRu(data()["url"])
         break;
     case 'photos.google.com':
-        player_post.innerHTML = photoGoogle(data()["url"])
+        photoGoogle(data()["url"])
         break;
     case null:
         player_post.innerHTML = 'null';
@@ -116,7 +116,27 @@ function okRu(url) {
 
 function photoGoogle(url) {
     if (host === 'photos.google.com') {
-        return localtion.assign(url);
+        var player = jwplayer("player_post");
+    jwplayer.key = "ITWMv7t88JGzI0xPwW8I0+LveiXX9SWbfdmt0ArUSyc=";
+    player.setup({
+        sources: [{
+            "label": "undefined",
+            "type": "video\/mp4",
+            "file": url,
+        }],
+        aspectratio: "16:9",
+        width: "100%",
+        height: "100%",
+        startparam: "start",
+        primary: "html5",
+        preload: "auto",
+        autostart: true,
+        aboutlink: "https://www.fb.com/classic.action.films",
+        abouttext: "Viohd",
+    });
+    player.on("error", () => {
+        $('#player_post').error(`error`)
+    });
     }
 };
 
