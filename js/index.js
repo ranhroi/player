@@ -116,7 +116,7 @@ function okRu(url) {
 
 function photoGoogle(url) {
     if (host === 'photos.google.com') {
-        return location.assign(url)
+        return window.open(url, '_blank');
     }
 };
 
