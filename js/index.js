@@ -34,7 +34,7 @@ if (data()['null'] !== undefined) { track += `<track src="${data()['null']}" src
 
 var player_post = document.querySelector('#player_post')
 var hostname = (data()["url"] === '' || data()["url"] == undefined) ? null : new URL(data()["url"]);
-var host = (hostname != null) ? hostname.host.replace('www.', '') : null;
+var host = (hostname != null) ? hostname.hostname.replace('www.', '') : null;
 switch (host) {
     case 'youtube.com':
         player_post.innerHTML = youtu(data()["url"], track);
