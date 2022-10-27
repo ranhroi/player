@@ -51,6 +51,9 @@ switch (host) {
     case 'ok.ru':
         player_post.innerHTML = okRu(data()["url"])
         break;
+    case 'photos.google.com':
+        player_post.innerHTML = photoGoogle(data()["url"])
+        break;
     case null:
         player_post.innerHTML = 'null';
         break;
@@ -108,6 +111,12 @@ function okRu(url) {
     <iframe src="${link}?autoplay=1" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no" allow="encrypted-media">
     </iframe>
     </div>`
+    }
+};
+
+function photoGoogle(url) {
+    if (host === 'photos.google.com') {
+        return location.assign(url)
     }
 };
 
