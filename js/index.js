@@ -113,33 +113,6 @@ function okRu(url) {
     </div>`
     }
 };
-
-function photoGoogle(url) {
-    if (host === 'photos.google.com') {
-        var player = jwplayer("player_post");
-    jwplayer.key = "ITWMv7t88JGzI0xPwW8I0+LveiXX9SWbfdmt0ArUSyc=";
-    player.setup({
-        sources: [{
-            "label": "undefined",
-            "type": "video\/mp4",
-            "file": url,
-        }],
-        aspectratio: "16:9",
-        width: "100%",
-        height: "100%",
-        startparam: "start",
-        primary: "html5",
-        preload: "auto",
-        autostart: true,
-        aboutlink: "https://www.fb.com/classic.action.films",
-        abouttext: "Viohd",
-    });
-    player.on("error", () => {
-        $('#player_post').html(`<a href="${url}" targer="_blank">Xem ngoai</a>`)
-    });
-    }
-};
-
 function mp4(url, tracks) {
     var player = jwplayer("player_post");
     jwplayer.key = "ITWMv7t88JGzI0xPwW8I0+LveiXX9SWbfdmt0ArUSyc=";
