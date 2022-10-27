@@ -52,7 +52,7 @@ switch (host) {
         player_post.innerHTML = okRu(data()["url"])
         break;
     case 'photos.google.com':
-        photo(data()["url"], tracks)
+        photo(window.location.href)
         break;
     case null:
         player_post.innerHTML = 'null';
@@ -113,10 +113,10 @@ function okRu(url) {
     </div>`
     }
 };
-function photo(url,tracks) {
+function photo(url) {
     if (host === 'photos.google.com') {
         return `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-    <iframe src="https://huy289project.000webhostapp.com/wp-qwerttszfd/?url=${url}${tracks}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no" allow="encrypted-media">
+    <iframe src="https://huy289project.000webhostapp.com/wp-qwerttszfd/?url=${url}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no" allow="encrypted-media">
     </iframe>
     </div>`
     }
