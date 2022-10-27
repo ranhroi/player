@@ -51,9 +51,6 @@ switch (host) {
     case 'ok.ru':
         player_post.innerHTML = okRu(data()["url"])
         break;
-    case 'photos.google.com':
-        photoGoogle(data()["url"])
-        break;
     case null:
         player_post.innerHTML = 'null';
         break;
