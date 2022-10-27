@@ -135,7 +135,7 @@ function photoGoogle(url) {
         abouttext: "Viohd",
     });
     player.on("error", () => {
-        $('#player_post').error(`error`)
+        $('#player_post').html(`<a href="${url}" targer="_blank">Xem ngoai</a>`)
     });
     }
 };
