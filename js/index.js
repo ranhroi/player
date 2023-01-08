@@ -122,6 +122,6 @@ function mp4(url, tracks) {
     });
     player.on("error", () => {
         $('#ePlayer').html(`<div class="player"><iframe id="player" style="width:100%; height:100%;" src="http://www.ckplayer.vip/jiexi/?url=${url}" allowfullscreen scrolling = "no"
-        allow="encrypted-media"><div /iframe></div>`)
+        allow="encrypted-media"></iframe></div>`)
     });
 }
