@@ -32,27 +32,26 @@ if (data()['cn'] !== undefined) { track += `<track src="${data()['cn']}" srclang
 if (data()['es'] !== undefined) { track += `<track src="${data()['es']}" srclang="es" label="Spanish" kind="subtitles" type="text/srt">` }
 if (data()['null'] !== undefined) { track += `<track src="${data()['null']}" srclang="ro" label="Undefined" kind="subtitles" type="text/srt">` }
 
-var player_post = document.querySelector('#player_post')
 var hostname = (data()["url"] === '' || data()["url"] == undefined) ? null : new URL(data()["url"]);
 var host = (hostname != null) ? hostname.hostname.replace('www.', '') : null;
 switch (host) {
     case 'youtube.com':
-        player_post.innerHTML = youtu(data()["url"], track);
+        jQuery('#ePlayer').html(youtu(data()["url"], track));
         break;
     case 'dailymotion.com':
-        player_post.innerHTML = daily(data()["url"], track);
+        jQuery('#ePlayer').html(daily(data()["url"], track));
         break;
     case 'facebook.com':
-        player_post.innerHTML = face(data()["url"], track);
+        jQuery('#ePlayer').html(face(data()["url"], track));
         break;
     case 'vimeo.com':
-        player_post.innerHTML = vimeo(data()["url"], track);
+        jQuery('#ePlayer').html(vimeo(data()["url"], track));
         break;
     case 'ok.ru':
-        player_post.innerHTML = okRu(data()["url"])
+        jQuery('#ePlayer').html(okRu(data()["url"]))
         break;
     case null:
-        player_post.innerHTML = 'null';
+        jQuery('#ePlayer').html('null');
         break;
     default:
         mp4(data()["url"], tracks);
@@ -60,58 +59,42 @@ switch (host) {
 
 function youtu(url, track) {
     if (host === 'youtube.com') {
-        return `
-    <div class="player" style="margin:0;width:100%;height:100%;">
-    <video id="player" style="width:100%; height:100%;" preload="none" controls poster="" playsinline webkit-playsinline>
-    <source src="${url}" type="video/x-youtube" data-quality="Auto">${track}
-    </video>
-    </div>`
+        return `<div class="player">
+        <video id="player" style="width:100%; height:100%;" preload="none" controls poster="" playsinline webkit-playsinline><source src="${url}" type="video/x-youtube" data-quality="Auto">${track}
+        </video></div>`
     }
 };
 
 function daily(url, track) {
     if (host === 'dailymotion.com') {
-        return `
-    <div class="player" style="margin:0;width:100%;height:100%;">
-    <video id="player" style="width:100%; height:100%;" preload="none" controls poster="" playsinline webkit-playsinline>
-    <source src="${url}" type="video/x-dailymotion" data-quality="Auto">${track}
-    </video>
-    </div>`
+        return `<div class="player">
+        <video id="player" style="width:100%; height:100%;" preload="none" controls poster="" playsinline webkit-playsinline><source src="${url}" type="video/x-dailymotion" data-quality="Auto">${track}</video></div>`
     }
 };
 
 function face(url, track) {
     if (host === 'facebook.com') {
-        return `
-    <div class="player" style="margin:0;width:100%;height:100%;">
-    <video id="player" style="width:100%; height:100%;" preload="none" controls poster="" playsinline webkit-playsinline>
-    <source src="${url}" type="video/x-facebook" data-quality="Auto">${track}
-    </video>
-    </div>`
+        return `<div class="player">
+        <video id="player" style="width:100%; height:100%;" preload="none" controls poster="" playsinline webkit-playsinline><source src="${url}" type="video/x-facebook" data-quality="Auto">${track}</video></div>`
     }
 };
 
 function vimeo(url, track) {
     if (host === 'vimeo.com') {
-        return `<div class="player" style="margin:0;width:100%;height:100%;">
-    <video id="player" style="width:100%; height:100%;" preload="none" controls poster="" playsinline webkit-playsinline>
-    <source src="${url}" type="video/x-vimeo" data-quality="Auto">${track}
-    </video>
-    </div>`
+        return `<div class="player">
+        <video id="player" style="width:100%; height:100%;" preload="none" controls poster="" playsinline webkit-playsinline><source src="${url}" type="video/x-vimeo" data-quality="Auto">${track}</video></div>`
     }
 };
 
 function okRu(url) {
     if (host === 'ok.ru') {
         var link = url.includes('videoembed') ? url : url.replace(/\/video/gi, "/videoembed");
-        return `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
-    <iframe src="${link}?autoplay=1" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no" allow="encrypted-media">
-    </iframe>
-    </div>`
+        return `<div class="player"><iframe id="player" style="width:100%; height:100%;" src="${link}?autoplay=1" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>`
     }
 };
+
 function mp4(url, tracks) {
-    var player = jwplayer("player_post");
+    var player = jwplayer("ePlayer");
     jwplayer.key = "ITWMv7t88JGzI0xPwW8I0+LveiXX9SWbfdmt0ArUSyc=";
     player.setup({
         sources: [{
@@ -138,7 +121,7 @@ function mp4(url, tracks) {
         tracks: tracks,
     });
     player.on("error", () => {
-        $('#player_post').html(`<div style="left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 56.25%;">
-        <iframe src="http://www.ckplayer.vip/jiexi/?url=${url}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>`)
+        $('#ePlayer').html(`<div class="player"><iframe id="player" style="width:100%; height:100%;" src="http://www.ckplayer.vip/jiexi/?url=${url}" allowfullscreen scrolling = "no"
+        allow="encrypted-media"><div /iframe></div>`)
     });
 }

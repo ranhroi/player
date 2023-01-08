@@ -1,0 +1,29 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body,
+.mejs__container {
+    width: 100%;
+    height: 100%;
+}
+
+#ePlayer {
+    position: relative;
+    padding-bottom: 56.25%;
+    width: 100%;
+    _height: 100%;
+}
+
+#ePlayer>.player {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+iframe#player {
+    border: 0;
+}
