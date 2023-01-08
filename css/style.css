@@ -5,25 +5,22 @@
 }
 
 html,
-body,
+body,#ePlayer, 
 .mejs__container {
     width: 100%;
     height: 100%;
 }
 
-#ePlayer {
+#ePlayer>.player {
     position: relative;
     padding-bottom: 56.25%;
     width: 100%;
     _height: 100%;
 }
 
-#ePlayer>.player {
+iframe#player {
+    border: 0;
     position: absolute;
     width: 100%;
     height: 100%;
-}
-
-iframe#player {
-    border: 0;
 }
