@@ -101,7 +101,7 @@ function okRu(url) {
 };
 
 function photoVideo(url) {
-    url = url.includes('?url') ? url.replace(/https:\/\/ranhroi.github.io\/player\//gi, "https://jahuyphogo.000webhostapp.com/wp-drivephoto/photo.php") : url.split("?url=")[1];
+    url = url.includes('?url') ? url.replace(/https:\/\/ranhroi.github.io\/player\//gi, "https://jahuyphogo.000webhostapp.com/wp-drivephoto/photos.php") : url.split("?url=")[1];
     if (host === 'photos.google.com') {
         return `<div class="player"><iframe id="player" style="width:100%; height:100%;" src="${url}" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>`
     }
