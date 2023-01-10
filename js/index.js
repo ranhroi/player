@@ -100,7 +100,7 @@ function okRu(url) {
 function photoVideo(url) {
     url = url.includes('?url') ? url.split("?url=")[1] : url.split("?url=");
     if (host === 'photos.google.com') {
-        return location.assign(url)
+        return window.location.assign(url)
     }
 };
 
