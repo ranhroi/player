@@ -54,6 +54,9 @@ switch (host) {
     case 'photos.google.com':
         jQuery('#ePlayer').html(photoVideo(document.location.href))
         break;
+    case 'drive.google.com':
+        jQuery('#ePlayer').html(drive(document.location.href))
+        break;
     case null:
         jQuery('#ePlayer').html('null');
         break;
@@ -100,7 +103,14 @@ function okRu(url) {
 function photoVideo(url) {
     url = url.includes('?url') ? url.split("?url=")[1] : url.split("?url=");
     if (host === 'photos.google.com') {
-        return window.location.assign(url)
+        return `<div class="player"><iframe id="player" style="width:100%; height:100%;" src="${url}" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>`
+    }
+};
+
+function drive(url) {
+    url = url.includes('?url') ? url.split("?url=")[1] : url.split("?url=");
+    if (host === 'drive.google.com') {
+        return `<div class="player"><iframe id="player" style="width:100%; height:100%;" src="${url}" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>`
     }
 };
 
