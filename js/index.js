@@ -6,6 +6,7 @@ function data() {
         });
     return vars;
 };
+
 var tracks = [
     { 'file': data()['vi'], 'label': 'Vietnamese', 'kind': 'captions', 'default': 'true' },
     { 'file': data()['en'], 'label': 'English', 'kind': 'captions' },
@@ -36,7 +37,7 @@ var hostname = (data()["url"] === '' || data()["url"] == undefined) ? null : new
 var host = (hostname != null) ? hostname.hostname.replace('www.', '') : null;
 switch (host) {
     case 'youtube.com':
-        jQuery('#ePlayer').html(youtu(data()["url"], track));
+        jQuery('#ePlayer').html(tube(data()["url"], track));
         break;
     case 'dailymotion.com':
         jQuery('#ePlayer').html(daily(data()["url"], track));
@@ -50,6 +51,9 @@ switch (host) {
     case 'ok.ru':
         jQuery('#ePlayer').html(okRu(data()["url"]))
         break;
+    case 'photos.google.com':
+        jQuery('#ePlayer').html(photoVideo(document.location.href))
+        break;
     case null:
         jQuery('#ePlayer').html('null');
         break;
@@ -57,7 +61,7 @@ switch (host) {
         mp4(data()["url"], tracks);
 };
 
-function youtu(url, track) {
+function tube(url, track) {
     if (host === 'youtube.com') {
         return `<div class="player">
         <video id="player" style="width:100%; height:100%;" preload="none" controls poster="" playsinline webkit-playsinline><source src="${url}" type="video/x-youtube" data-quality="Auto">${track}
@@ -88,8 +92,15 @@ function vimeo(url, track) {
 
 function okRu(url) {
     if (host === 'ok.ru') {
-        var link = url.includes('videoembed') ? url : url.replace(/\/video/gi, "/videoembed");
-        return `<div class="player"><iframe id="player" style="width:100%; height:100%;" src="${link}?autoplay=1" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>`
+        url = url.includes('videoembed') ? url : url.replace(/\/video/gi, "/videoembed");
+        return `<div class="player"><iframe id="player" style="width:100%; height:100%;" src="${url}?autoplay=1" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>`
+    }
+};
+
+function photoVideo(url) {
+    url = url.includes('?url') ? url.split("?url=")[1] : url.split("?url=");
+    if (host === 'photos.google.com') {
+        return location.assign(url)
     }
 };
 
