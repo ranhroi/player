@@ -110,7 +110,7 @@ function photoVideo(url) {
 function drive(url) {
     url = url.includes('?url') ? url.replace(/https:\/\/ranhroi.github.io\/player\//gi, "https://jahuyphogo.000webhostapp.com/wp-drivephoto/drive.php") : url.split("?url=")[1];
     if (host === 'drive.google.com') {
-        return `<div class="player"><iframe id="player" style="width:100%; height:100%;" src="https://jahuyphogo.000webhostapp.com/wp-drivephoto/drive.php?url=${url}" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>`
+        return `<div class="player"><iframe id="player" style="width:100%; height:100%;" src="${url}" allowfullscreen scrolling="no" allow="encrypted-media"></iframe></div>`
     }
 };
 
