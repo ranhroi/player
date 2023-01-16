@@ -12,6 +12,7 @@ body,
 }
 
 .mejs__container {
+    position: inherit;
     width: 100% !important;
 }
 
